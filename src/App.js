@@ -8,7 +8,8 @@ class App extends Component {
 
     this.state = {
        FirstName : "",
-       LastName : ""
+       LastName : "",
+       startDate: new Date()
     };
   }
 
@@ -25,6 +26,12 @@ class App extends Component {
      this.setState({
        LastName : event.target.value
      })
+  }
+
+  handleTimeChange = (date) => {
+      this.setState({
+        startDate : date
+      })
   }
 
   handleSubmit = (event) => {
@@ -54,12 +61,15 @@ class App extends Component {
      onChange = {this.handleLastName}
      />
       </div>
-    <div>
+    <div><br/>
      <DatePicker
-     type = "date"
-     defaultValue = "24:08:2020"
-     timeFormat="HH:mm:ss"
-     value = {this.s}/>
+     timeCaption = "time"
+     showYearDropdown
+     showTimeSelect
+     showMonthDropdown
+     dateFormat="MMMM d, yyyy HH:mm:ss aa"
+     selected = {this.state.startDate}
+     onChange= { this.handleTimeChange} />
       </div>
     <Button type="Submit" color="primary">Submit</Button>
     </form>
